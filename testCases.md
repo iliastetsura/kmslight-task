@@ -14,3 +14,10 @@ Test Case 2: Validate “Our Solutions” navigation links
 - Check that ‘Call Center’, ‘Self Service’, ‘Onboarding & Training’ and ‘Field Service’ links are not displayed by default
 - Click ‘Our Solutions’ link
 - Check that ‘Call Center’, ‘Self Service’, ‘Onboarding & Training’ and ‘Field Service’ links are displayed and contain correct links
+
+Test Case 3: Validate Blog Search
+- Click Resources header link
+- Navigate to Blog page
+- Search for 'KMS Lighthouse' text
+- Check that search results contain at least 1 element
+- Check that each search result contains searched text

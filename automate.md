@@ -1,6 +1,6 @@
 Things to automate:
-I would definitely automate the "Book a demo" form, since I notice that there are redirects to this form from many pages in the system. This makes the form an important feature.
-Tests to create:
-- UI tests for form validation. Example - check validation for each field on the form
-- UI tests for form submitting. Example - submit the form using different sets of values
-- API tests for form requests. Example - test POST requests
+0. Validate Book a demo form submitting. The most important functionality because there are redirects to this form from many pages in the system.
+NOTE - Can't be automated on production because ReCaptcha blocks form submitting in tests.
+1. Validate 'I Need Knowledge Management' section. Important to check that content is displayed correctly when user triggers different tabs inside the section.
+2. Validate Our Solutions navigation links. Important to check that navigation links are displayed correctly and contain correct link addresses.
+3. Validate Blog Search. Important to check that search works correctly.

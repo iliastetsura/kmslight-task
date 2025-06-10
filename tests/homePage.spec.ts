@@ -1,4 +1,5 @@
 import { test, expect, Locator } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test.beforeEach(async({page}) => {
   await page.goto('/');
@@ -11,13 +12,23 @@ test('Validate Book a Demo link navigation', async ({ page }) => {
     // Verify the redirection
     await expect(page).toHaveURL('/book-a-demo/');
 
+    // Generate test data
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
+    const professionalEmail = faker.internet.email({ firstName: firstName, lastName: lastName, provider: 'kmslh.com' });
+    const phone = faker.phone.number();
+    const jobTitle = faker.person.jobTitle();
+    const country = faker.location.country();
+    const message = faker.word.adjective();
+
     // Check that input fields are present and interactable
-    await page.getByRole('textbox', { name: 'First name*' }).fill('First');
-    await page.getByRole('textbox', { name: 'Last name*' }).fill('Last');
-    await page.getByRole('textbox', { name: 'Professional Email*' }).fill('email@example.com');
-    await page.getByRole('textbox', { name: 'Phone number*' }).fill('0123456789');
-    await page.getByRole('combobox', { name: 'Country/Region*' }).selectOption('Andorra')
-    await page.getByRole('textbox', { name: 'Message'}).fill('Test message');
+    await page.getByRole('textbox', { name: 'First name*' }).fill(firstName);
+    await page.getByRole('textbox', { name: 'Last name*' }).fill(lastName);
+    await page.getByRole('textbox', { name: 'Professional Email*' }).fill(professionalEmail);
+    await page.getByRole('textbox', { name: 'Phone number*' }).fill(phone);
+    await page.getByRole('textbox', { name: 'Job Title*' }).fill(jobTitle);
+    await page.getByRole('combobox', { name: 'Country/Region*' }).selectOption(country)
+    await page.getByRole('textbox', { name: 'Message'}).fill(message);
 });
 
 test('Validate default state of Accessibility toggles', async ({ page }) => {
@@ -141,4 +152,30 @@ test('Validate Our Solutions navigation links', async ({ page }) => {
     await expect(selfServiceLink).toHaveAttribute('href', 'https://kmslh.com/solution-self-service/');
     expect(fieldServiceLink).toBeVisible;
     await expect(fieldServiceLink).toHaveAttribute('href', 'https://kmslh.com/solution-field-service/');
+});
+
+test('Validate Blog Search', async ({ page }) => {
+    // Click Resources header link
+    await page.getByRole('banner').getByRole('link', { name: 'Resources' }).click();
+
+    // Navigate to Blog page
+    await page.getByRole('banner').getByRole('link').filter({ hasText: 'Blog' }).click();
+    
+    // Search for "KMS Lighthouse" text
+    await page.getByRole('searchbox', { name: 'Search' }).click();
+    await page.getByRole('searchbox', { name: 'Search' }).fill('KMS Lighthouse');
+    await page.getByRole('button', { name: 'Search' }).click();
+    await expect(page).toHaveURL('/?s=KMS+Lighthouse');
+
+    // Check that search results contain at least 1 element
+    await page.mouse.wheel(0, 500);
+    const searchResultCard = page.locator('[data-elementor-type="loop-item"]');
+    const searchResultCardCount = await searchResultCard.count();
+    expect(searchResultCardCount).toBeGreaterThan(0);
+
+    // Check that each search result contains searched text
+    for (let i = 0; i < searchResultCardCount; i ++) {
+        const searchResultCardText = await searchResultCard.nth(i).textContent();
+        expect(searchResultCardText).toContain('KMS Lighthouse');
+    }
 });
