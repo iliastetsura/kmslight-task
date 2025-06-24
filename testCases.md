@@ -1,4 +1,5 @@
 Test Case 1: Validate “I Need Knowledge Management” section
+
 - On the homepage scroll down to “I Need Knowledge Management For My” section
 - Check that ‘Cut call center holding times by 40%’ text is displayed by default
 - Click ‘Self Service’ tab
@@ -10,12 +11,14 @@ Test Case 1: Validate “I Need Knowledge Management” section
 - Click ‘Call Center’ tab
 - Check that ‘Cut call center holding times by 40%’ text is displayed again
 
-Test Case 2: Validate “Our Solutions” navigation links 
+Test Case 2: Validate “Our Solutions” navigation links
+
 - Check that ‘Call Center’, ‘Self Service’, ‘Onboarding & Training’ and ‘Field Service’ links are not displayed by default
 - Click ‘Our Solutions’ link
 - Check that ‘Call Center’, ‘Self Service’, ‘Onboarding & Training’ and ‘Field Service’ links are displayed and contain correct links
 
 Test Case 3: Validate Blog Search
+
 - Click Resources header link
 - Navigate to Blog page
 - Search for 'KMS Lighthouse' text
