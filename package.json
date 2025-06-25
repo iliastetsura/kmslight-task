@@ -7,6 +7,7 @@
         "format": "prettier --write .",
         "test": "playwright test"
     },
+    "type": "module",
     "keywords": [],
     "author": "Ilia Stetsura",
     "license": "ISC",
@@ -19,7 +20,9 @@
         "@typescript-eslint/parser": "^8.35.0",
         "eslint": "^9.29.0",
         "eslint-config-prettier": "^10.1.5",
-        "eslint-plugin-prettier": "^5.5.0",
+        "eslint-define-config": "^2.1.0",
+        "eslint-plugin-playwright": "^2.2.0",
+        "eslint-plugin-prettier": "^5.5.1",
         "prettier": "^3.6.0"
     }
 }
