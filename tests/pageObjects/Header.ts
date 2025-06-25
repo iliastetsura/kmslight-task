@@ -9,7 +9,7 @@ export class Header {
     selfServiceLink: Locator;
     fieldServiceLink: Locator;
     integrationsLink: Locator;
-    resourcesLink: Locator;
+    knowledgeCenterLink: Locator;
     blogLink: Locator;
     caseStudiesLink: Locator;
     aboutLink: Locator;
@@ -28,15 +28,17 @@ export class Header {
         this.integrationsLink = page
             .getByRole('banner')
             .getByRole('link', { name: 'Integrations' });
-        this.resourcesLink = page.getByRole('banner').getByRole('link', { name: 'Resources' });
+        this.knowledgeCenterLink = page
+            .getByRole('banner')
+            .getByRole('link', { name: 'Knowledge Center' });
         this.blogLink = page.getByRole('banner').getByRole('link').filter({ hasText: 'Blog' });
         this.caseStudiesLink = page.getByRole('banner').getByRole('link', { name: 'Case Studies' });
         this.aboutLink = page.getByRole('banner').getByRole('link', { name: 'About' });
         this.bookADemoButton = page.locator('.header_panel').getByText('Book a Demo');
     }
 
-    async clickResourcesLink() {
-        await this.resourcesLink.click();
+    async clickKnowledgeCenterLink() {
+        await this.knowledgeCenterLink.click();
     }
 
     async clickOurSolutionsLink() {
